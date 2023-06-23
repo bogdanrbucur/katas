@@ -2,9 +2,9 @@
 function solution(str, ending) {
   // convert the strings into arrays of chars and get their length
 	strArray = [...str];
-	strArrayLen = [...str].length;
+	strArrayLen = strArray.length;
 	endArray = [...ending];
-	endArrayLen = [...ending].length;
+	endArrayLen = endArray.length;
 
 	let found = 0;
 
