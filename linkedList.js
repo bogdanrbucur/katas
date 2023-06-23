@@ -17,6 +17,8 @@ class LinkedList {
 	getSize() {
 		return this.size;
 	}
+
+	// O(1)
 	addLast(value) {
 		let node = new Node(value);
 
@@ -29,11 +31,21 @@ class LinkedList {
 			this.size += 1;
 		}
 	}
+
+	// O(1)
+	addFirst(value) {
+		let node = new Node(value);
+
+		node.next = this.first;
+		this.first = node;
+		this.size += 1;
+	}
 }
 
 let list = new LinkedList();
-list.addLast(1);
 list.addLast(10);
+list.addLast(20);
+list.addFirst(5);
 
 console.log(list);
 console.log(list.getSize());
