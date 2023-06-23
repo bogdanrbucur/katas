@@ -40,6 +40,16 @@ class LinkedList {
 		this.first = node;
 		this.size += 1;
 	}
+	indexOf(item) {
+		let index = 0;
+		let current = this.first;
+		while (current !== null) {
+			if (current.value === item) return index;
+			current = current.next;
+			index += 1;
+		}
+		return -1;
+	}
 }
 
 let list = new LinkedList();
@@ -49,3 +59,4 @@ list.addFirst(5);
 
 console.log(list);
 console.log(list.getSize());
+console.log(list.indexOf(10));
