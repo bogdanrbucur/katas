@@ -50,6 +50,31 @@ class LinkedList {
 		}
 		return -1;
 	}
+	contains(item) {
+		return this.indexOf(item) != -1;
+	}
+	// 5 -> 10 -> 20
+	removeFirst() {
+		if (this.isEmpty()) {
+			throw new console.error("Linked list is empty");
+		}
+		if (this.first == this.last) {
+			this.first = null;
+			this.last = null;
+			this.size -= 1;
+		} else {
+			this.first = this.first.next;
+			this.size -= 1;
+		}
+	}
+	removeLast() {
+		if (this.isEmpty()) {
+			throw new console.error("Linked list is empty");
+		}
+		if (this.first == this.last) {
+			// TODO
+		}
+	}
 }
 
 let list = new LinkedList();
@@ -58,5 +83,7 @@ list.addLast(20);
 list.addFirst(5);
 
 console.log(list);
+list.removeFirst();
 console.log(list.getSize());
 console.log(list.indexOf(10));
+console.log(list.contains(5));
