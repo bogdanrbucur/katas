@@ -121,21 +121,18 @@ class LinkedList {
 		this.first = origLast;
 		this.last = origFirst;
 	}
-	
+
 	// return Kth node from the end
 	getKthFromTheEnd(k) {
 		if (k > this.size) throw new Error("Argument is larger than list size!");
 		if (k <= 0) throw new Error("Invalid argument!");
 		if (k === this.size) return this.first;
 
+		// start from the last node and go back k-1 times
 		let current = this.last;
-		let i = 0;
-		while (i < k - 1) {
-			console.log(current.value);
+		for (let i = 0; i < k - 1; i++) {
 			current = this.getPrevious(current);
-			i++;
 		}
-		console.log(`Result: ${current.value}`);
 		return current;
 	}
 }
@@ -160,4 +157,4 @@ list.addFirst(5);
 console.log(list.toArray());
 // console.log(list);
 console.log(list.getSize());
-console.log(list.getKthFromTheEnd(1).value);
+console.log(list.getKthFromTheEnd(3).value);
