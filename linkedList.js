@@ -56,7 +56,7 @@ class LinkedList {
 	// 5 -> 10 -> 20
 	removeFirst() {
 		if (this.isEmpty()) {
-			throw new console.error("Linked list is empty");
+			throw new Error("Linked list is empty");
 		}
 		if (this.first == this.last) {
 			this.first = this.last = null;
@@ -69,7 +69,7 @@ class LinkedList {
 	// O(n)
 	removeLast() {
 		if (this.isEmpty()) {
-			throw new console.error("Linked list is empty");
+			throw new Error("Linked list is empty");
 		}
 		if (this.first == this.last) {
 			this.first = this.last = null;
@@ -87,19 +87,56 @@ class LinkedList {
 
 		let current = this.first;
 		while (current !== null) {
-			if(current.next === node) return current;
+			if (current.next === node) return current;
 			current = current.next;
 		}
 		return null;
 	}
-	toArray(){
+	toArray() {
 		let array = [];
 		let current = this.first;
-		while(current !== null) {
+		while (current !== null) {
 			array.push(current.value);
 			current = current.next;
 		}
 		return array;
+	}
+	reverse() {
+		let origFirst = this.first;
+		let origLast = this.last;
+
+		// go from end to beginning
+		let current = origLast;
+		while (current !== null) {
+			// store the original previous node, if there is one
+			let origPrev;
+			this.getPrevious(current) ? (origPrev = this.getPrevious(current)) : (origPrev = null);
+
+			// change the next reference to point to the previous node
+			current.next = this.getPrevious(current);
+
+			// move on to the previous node
+			current = origPrev;
+		}
+		this.first = origLast;
+		this.last = origFirst;
+	}
+	
+	// return Kth node from the end
+	getKthFromTheEnd(k) {
+		if (k > this.size) throw new Error("Argument is larger than list size!");
+		if (k <= 0) throw new Error("Invalid argument!");
+		if (k === this.size) return this.first;
+
+		let current = this.last;
+		let i = 0;
+		while (i < k - 1) {
+			console.log(current.value);
+			current = this.getPrevious(current);
+			i++;
+		}
+		console.log(`Result: ${current.value}`);
+		return current;
 	}
 }
 
@@ -107,13 +144,20 @@ let list = new LinkedList();
 list.addLast(10);
 list.addLast(20);
 list.addLast(30);
+list.addLast(40);
+list.addLast(50);
+list.addLast(60);
 list.addFirst(5);
 
-console.log(list);
-list.removeFirst();
-list.removeLast();
-console.log(list);
+// console.log(list);
+// list.removeFirst();
+// list.removeLast();
+// console.log(list);
+// console.log(list.indexOf(10));
+// console.log(list.contains(5));
+// console.log(list.toArray());
+// list.reverse();
+console.log(list.toArray());
+// console.log(list);
 console.log(list.getSize());
-console.log(list.indexOf(10));
-console.log(list.contains(5));
-console.log(list.toArray())
+console.log(list.getKthFromTheEnd(1).value);
