@@ -93,7 +93,13 @@ class LinkedList {
 		return null;
 	}
 	toArray(){
-		
+		let array = [];
+		let current = this.first;
+		while(current !== null) {
+			array.push(current.value);
+			current = current.next;
+		}
+		return array;
 	}
 }
 
@@ -110,3 +116,4 @@ console.log(list);
 console.log(list.getSize());
 console.log(list.indexOf(10));
 console.log(list.contains(5));
+console.log(list.toArray())
