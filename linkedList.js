@@ -59,8 +59,7 @@ class LinkedList {
 			throw new console.error("Linked list is empty");
 		}
 		if (this.first == this.last) {
-			this.first = null;
-			this.last = null;
+			this.first = this.last = null;
 			this.size = 0;
 		} else {
 			this.first = this.first.next;
@@ -73,8 +72,7 @@ class LinkedList {
 			throw new console.error("Linked list is empty");
 		}
 		if (this.first == this.last) {
-			this.first = null;
-			this.last = null;
+			this.first = this.last = null;
 			this.size = 0;
 		} else {
 			let previous = this.getPrevious(this.last);
@@ -93,6 +91,9 @@ class LinkedList {
 			current = current.next;
 		}
 		return null;
+	}
+	toArray(){
+		
 	}
 }
 
