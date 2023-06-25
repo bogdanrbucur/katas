@@ -135,6 +135,29 @@ class LinkedList {
 		}
 		return current;
 	}
+
+	// fast and slow pointer algorithm
+	getMiddle() {
+		if (this.fist === this.last) return this.first;
+
+		let fast = this.first;
+		let slow = this.first;
+
+		// until fast reaches the tail of the list
+		while (fast !== this.last) {
+			
+			// if below is true, it means even number of nodes
+			if (fast.next.next === null) {
+				// so return both middle values
+				return [slow, slow.next];
+			}
+
+			// fast goes 2 positions forward and slow 1
+			fast = fast.next.next;
+			slow = slow.next;
+		}
+		return slow; // return middle node for odd no. of nodes
+	}
 }
 
 let list = new LinkedList();
@@ -144,6 +167,9 @@ list.addLast(30);
 list.addLast(40);
 list.addLast(50);
 list.addLast(60);
+list.addLast(70);
+list.addLast(80);
+list.addLast(80);
 list.addFirst(5);
 
 // console.log(list);
@@ -153,8 +179,9 @@ list.addFirst(5);
 // console.log(list.indexOf(10));
 // console.log(list.contains(5));
 // console.log(list.toArray());
-// list.reverse();
+list.reverse();
 console.log(list.toArray());
 // console.log(list);
 console.log(list.getSize());
 console.log(list.getKthFromTheEnd(3).value);
+console.log(list.getMiddle());
