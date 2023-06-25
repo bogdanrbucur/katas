@@ -17,7 +17,6 @@ class LinkedList {
 	getSize() {
 		return this.size;
 	}
-
 	// O(1)
 	addLast(value) {
 		let node = new Node(value);
@@ -31,7 +30,6 @@ class LinkedList {
 			this.size += 1;
 		}
 	}
-
 	// O(1)
 	addFirst(value) {
 		let node = new Node(value);
@@ -40,6 +38,7 @@ class LinkedList {
 		this.first = node;
 		this.size += 1;
 	}
+	// O(n)
 	indexOf(item) {
 		let index = 0;
 		let current = this.first;
@@ -53,7 +52,7 @@ class LinkedList {
 	contains(item) {
 		return this.indexOf(item) != -1;
 	}
-	// 5 -> 10 -> 20
+	// O(1)
 	removeFirst() {
 		if (this.isEmpty()) {
 			throw new Error("Linked list is empty");
@@ -81,7 +80,7 @@ class LinkedList {
 			this.size -= 1;
 		}
 	}
-	//  5 -> 10 -> 20 -> 30
+	//  O(n)
 	getPrevious(node) {
 		if (node === this.first) return null;
 
@@ -92,6 +91,7 @@ class LinkedList {
 		}
 		return null;
 	}
+	// O(n)
 	toArray() {
 		let array = [];
 		let current = this.first;
@@ -101,6 +101,7 @@ class LinkedList {
 		}
 		return array;
 	}
+	// O(n)
 	reverse() {
 		let origFirst = this.first;
 		let origLast = this.last;
@@ -121,8 +122,8 @@ class LinkedList {
 		this.first = origLast;
 		this.last = origFirst;
 	}
-
 	// return Kth node from the end
+	// O(n)
 	getKthFromTheEnd(k) {
 		if (k > this.size) throw new Error("Argument is larger than list size!");
 		if (k <= 0) throw new Error("Invalid argument!");
@@ -137,6 +138,7 @@ class LinkedList {
 	}
 
 	// fast and slow pointer algorithm
+	// O(n)
 	getMiddle() {
 		if (this.fist === this.last) return this.first;
 
@@ -145,7 +147,7 @@ class LinkedList {
 
 		// until fast reaches the tail of the list
 		while (fast !== this.last) {
-			
+
 			// if below is true, it means even number of nodes
 			if (fast.next.next === null) {
 				// so return both middle values
